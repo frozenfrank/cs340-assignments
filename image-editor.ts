@@ -119,8 +119,8 @@ export default class ImageEditor {
     let curColor: Color, upLeftColor: Color;
     let grayLevel: number;
     let diff: number;
-    for (let x = 0; x < image.getWidth(); ++x) {
-      for (let y = 0; y < image.getHeight(); ++y) {
+    for (let x = image.getWidth() - 1; x >= 0; --x) {
+      for (let y = image.getHeight() - 1; y >= 0; --y) {
         curColor = image.get(x, y);
 
 				diff = 0;
@@ -137,7 +137,7 @@ export default class ImageEditor {
 					}
 				}
 
-        grayLevel = Math.floor((curColor.red + curColor.green + curColor.blue) / 3);
+        grayLevel = 128 + diff;
         grayLevel = Math.max(0, Math.min(grayLevel, 255));
 
         curColor.red = grayLevel;
@@ -183,7 +183,7 @@ export default class ImageEditor {
 			for (let y = 0; y < image.getHeight(); ++y) {
 				for (let x = 0; x < image.getWidth(); ++x) {
 					color = image.get(x, y);
-					out.push(`${x == 0 ? "" : " "} ${color.red} ${color.green} ${color.blue}`);
+					out.push(`${x == 0 ? "" : " "}${color.red} ${color.green} ${color.blue}`);
 				}
 				out.push("\n");
 			}
