@@ -70,7 +70,7 @@ export default class ImageEditor {
 
         const maxX = Math.min(image.getWidth() - 1, x + length - 1);
         let tempColor: Color;
-        for (let i = x + 1; x <= maxX; ++i) {
+        for (let i = x + 1; i <= maxX; ++i) {
           tempColor = image.get(i, y);
           curColor.red += tempColor.red;
           curColor.green += tempColor.green;

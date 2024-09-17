@@ -10,7 +10,7 @@ export class Image {
   private pixels: Color[][];
 
   constructor(width: number, height: number) {
-    this.pixels = [...Array(width)].map(() => [...Array(height)].map(() => new Color()));
+    this.pixels = [...Array(width)].map(() => [...Array(height)].fill(null));
   }
 
   getWidth() {
