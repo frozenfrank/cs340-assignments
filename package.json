@@ -1,11 +1,11 @@
 {
   "name": "image_editor",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node dist/ImageEditor.js"
+    "start": "node dist/main.js"
   },
   "keywords": [],
   "author": "",
