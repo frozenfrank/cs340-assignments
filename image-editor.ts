@@ -177,7 +177,7 @@ export default class ImageEditor {
       const out = [];
       out.push("P3\n");
       out.push(image.getWidth() + " " + image.getHeight() + "\n");
-      out.push("225\n");
+      out.push("255\n");
 
       let color: Color;
 			for (let y = 0; y < image.getHeight(); ++y) {
