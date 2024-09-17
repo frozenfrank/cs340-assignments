@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}/main.ts",
-      "args": [ "ImageEditorFiles/source_images/feep.ppm", "feep-invert.ppm", "invert" ],
+      "args": [ "ImageEditorFiles/source_images/feep.ppm", "feep-motionblur.ppm", "motionblur", "10" ],
       "outFiles": [
         "${workspaceFolder}/**/*.js"
       ]

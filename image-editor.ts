@@ -35,6 +35,7 @@ export default class ImageEditor {
             return;
           }
 
+          console.log("Motion blurring with blurLength", blurLength);
           this.motionBlur(image, blurLength);
           break;
         default:
@@ -43,6 +44,7 @@ export default class ImageEditor {
       }
 
       this.write(image, outputFile);
+      console.log("Wrote result to file: ", outputFile);
     } catch (error) {
       console.error(error);
     }

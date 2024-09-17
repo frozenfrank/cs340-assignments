@@ -21,10 +21,12 @@ export class Image {
   }
 
   set(x: number, y: number, color: Color) {
+    !this.pixels?.[x] && console.log(null, x, y);
     this.pixels[x][y] = color;
   }
 
   get(x: number, y: number) {
+    !this.pixels?.[x] && console.log(null, x, y);
     return this.pixels[x][y];
   }
 }
