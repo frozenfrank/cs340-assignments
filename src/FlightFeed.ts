@@ -2,8 +2,8 @@ import { Flight } from "./entity/Flight";
 import { FlightStates } from "./entity/FlightStates";
 
 export class FlightFeed {
-  private OPEN_SKY_BASE_URL = "https://opensky-network.org/api/states/all";
-  // private OPEN_SKY_BASE_URL = "https://students.cs.byu.edu/~cs340ta/observer/index.php"
+  // private OPEN_SKY_BASE_URL = "https://opensky-network.org/api/states/all";
+  private OPEN_SKY_BASE_URL = "https://students.cs.byu.edu/~cs340ta/observer/index.php"
 
   // Flight property
   _flight: Flight | null = null;
@@ -17,7 +17,7 @@ export class FlightFeed {
       console.log(this._flight);
 
       while (true) {
-        let UPDATE_DELAY_SEC = 60; // 60 seconds
+        let UPDATE_DELAY_SEC = 5; // 60 seconds
         await new Promise((f) => setTimeout(f, 1000 * UPDATE_DELAY_SEC));
 
         // Get latest flight info
@@ -34,8 +34,8 @@ export class FlightFeed {
             // Flight info changed
             this.setFlight(newFlight);
             console.log(this._flight);
-          } 
-        } 
+          }
+        }
       }
     }
   }
