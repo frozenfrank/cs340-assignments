@@ -6,7 +6,7 @@ main();
 
 function main() {
   const feed = new FlightFeed();
-  feed.attach(new TerminalDeltaObserver());
   feed.attach(new TerminalObserver());
+  feed.attach(new TerminalDeltaObserver());
   feed.start();
 }
