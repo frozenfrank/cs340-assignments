@@ -9,7 +9,7 @@ export class FlightFeed extends Subject<Flight|null> {
   // Flight property
   _flight: Flight | null = null;
 
-  async start(): Promise<void> {
+  async start(pollFrequencySec = 5): Promise<void> {
     let allFlights: FlightStates | null = await this.getFirstFlights();
 
     if (allFlights != null && allFlights.states.length > 0) {
@@ -18,8 +18,7 @@ export class FlightFeed extends Subject<Flight|null> {
       this.notify(this._flight);
 
       while (true) {
-        let UPDATE_DELAY_SEC = 5; // 60 seconds
-        await new Promise((f) => setTimeout(f, 1000 * UPDATE_DELAY_SEC));
+        await new Promise((f) => setTimeout(f, 1000 * pollFrequencySec));
 
         // Get latest flight info
         let newFlight: Flight | null =
