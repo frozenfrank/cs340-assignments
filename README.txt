@@ -5,7 +5,7 @@ LINE COUNT DOCUMENTATION
 
 The command line syntax for LineCount is:
 
-	npx ts-node LineCount {-r} <dir> <fileSelectionPattern>
+	npx tsx LineCount {-r} <dir> <fileSelectionPattern>
 
 The command line argument "-r" is optional and indicates whether the search for files is recursive.
 
@@ -22,12 +22,12 @@ Possible Errors:
 	The directory name names a directory but is not readable.
 	A selected file in a directory is not readable.
 	Command line is not of the proper syntax.
-	
+
 EXAMPLE:
 
 The command line entry:
 
-	npx ts-node src/LineCount -r ./ \.ts$
+	npx tsx src/LineCount -r ./ \.ts$
 
 returned the output:
 
@@ -44,7 +44,7 @@ FILE SEARCH DOCUMENTATION
 -------------------------
 The command line syntax for FileSearch is:
 
-	npx ts-node FileSearch {-r} <dir> <fileSelectionPattern> <search-pattern>
+	npx tsx FileSearch {-r} <dir> <fileSelectionPattern> <search-pattern>
 
 The command line argument "-r" is optional and indicates whether the search for files is recursive.
 
@@ -70,7 +70,7 @@ EXAMPLE:
 
 The command line entry:
 
-	npx ts-node src/FileSearch -r ./ \.ts$ false
+	npx tsx src/FileSearch -r ./ \.ts$ false
 
 returned the output:
 
