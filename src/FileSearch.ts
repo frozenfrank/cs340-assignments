@@ -47,11 +47,11 @@ class FileSearch extends DirWalker {
     this.searchRegExp = new RegExp(searchPattern);
   }
 
-  protected processFile_Start(): void {
+  protected override processFile_Start(filePath: string): void {
     this.currentMatchCount = 0;
   }
 
-  protected processFile_Do(filePath: string, lines: string[]): void {
+  protected override processFile_Do(filePath: string, lines: string[]): void {
     lines.forEach((line) => {
       if (this.searchRegExp.test(line)) {
         if (++this.currentMatchCount == 1) {
@@ -65,13 +65,13 @@ class FileSearch extends DirWalker {
     });
   }
 
-  protected processFile_Finish(): void {
+  protected override processFile_Finish(filePath: string): void {
     if (this.currentMatchCount > 0) {
       console.log(`MATCHES: ${this.currentMatchCount}`);
     }
   }
 
-  protected printResults(): void {
+  protected override printResults(): void {
     console.log();
     console.log(`TOTAL MATCHES: ${this.totalMatches}`);
   }

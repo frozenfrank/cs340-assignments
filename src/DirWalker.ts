@@ -98,7 +98,7 @@ export abstract class DirWalker {
     }
 
     try {
-      this.processFile_Start();
+      this.processFile_Start(filePath);
 
       const fileContent: string = await fs.promises.readFile(
         filePath,
@@ -110,15 +110,15 @@ export abstract class DirWalker {
     } catch (error) {
       this.unreadableFile(filePath);
     } finally {
-      this.processFile_Finish();
+      this.processFile_Finish(filePath);
     }
   }
 
-  protected abstract processFile_Start(): void;
+  protected abstract processFile_Start(filePath: string): void;
 
   protected abstract processFile_Do(filePath: string, lines: string[]): void;
 
-  protected abstract processFile_Finish(): void;
+  protected abstract processFile_Finish(filePath: string): void;
 
   protected abstract printResults(): void;
 
