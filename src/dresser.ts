@@ -44,11 +44,13 @@ class Dresser<
 function testDresser() {
   const dresser = new Dresser<Socks, Shirt, Pants>();
 
+  // Top dresser
   dresser.top.addItem({style: "long", color:"black"});
   dresser.top.addItem({style: "long", color:"white"});
   dresser.top.addItem({style: "short", color:"white"});
   dresser.top.isEmpty(); // assert: False
 
+  // Middle dresser
   dresser.middle.isEmpty(); // assert: True
   dresser.middle.addItem({style: "shorts", size: "L"});
   dresser.middle.addItem({style: "graphic", size: "L"});
@@ -56,11 +58,15 @@ function testDresser() {
   dresser.middle.removeItem(); // assert: {style: "sweater", size: "slim"}
   dresser.middle.removeItem(); // assert: {style: "graphic", size: "L"}
 
+  // Bottom dresser
   dresser.bottom.removeAll(); // assert: []
   dresser.bottom.addItem({waist: 30, length: 32});
   dresser.bottom.addItem({waist: 31.5, length: 32});
+  // @ts-expect-error
   dresser.bottom.addItem({style: "long", color:"white"}); // INVALID: Compile error
   dresser.bottom.removeAll(); // Assert: length(2)
   dresser.bottom.isEmpty(); // Assert: true
 
 }
+
+testDresser();
