@@ -4,8 +4,8 @@
 
 /**
  * # Answers
- * 1. Single Responsibility Principle. It is combining the `Course` model with the course DAO methods.
- * 2. I would remove the `create()`, `find()`, and `update()` methods and put them in a separate DAO class.
+ * 1. Single Responsibility Principle and information hiding. It is combining the `Course` model with the course DAO methods.
+ * 2. I would remove the `create()`, `find()`, and `update()` methods and put them in a separate DAO class. The field values should be private.
  */
 
 export class Course {
