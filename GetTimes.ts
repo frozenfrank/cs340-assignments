@@ -2,6 +2,12 @@
 // 1. What is the biggest design principle violation in the code below.
 // 2. Refactor the code to improve its design.
 
+/**
+ * # Answers
+ * 1. Code duplication.
+ * 2. See code changed below.
+ */
+
 type Dictionary = {
 	[index: string]: string
 }
@@ -14,44 +20,35 @@ type Times = {
 
 function getTimes(props: Dictionary): Times {
 
-	let valueString: string;
-	let value: number;
+	const interval = extractIntFromProps("interval", props);
 
-	valueString = props["interval"];
-	if (!valueString) {
-		throw new Error("missing interval");
-	}
-	value = parseInt(valueString);
-	if (value <= 0) {
-		throw new Error("interval must be > 0");
-	}
-	let interval = value;
+	const duration = extractIntFromProps("duration", props);
+	enforceMultipleOfInterval("duration", duration, interval);
 
-	valueString = props["duration"];
+	const departure = extractIntFromProps("departure", props);
+	enforceMultipleOfInterval("departure", departure, interval);
+
+	return { interval, duration, departure };
+}
+
+function extractIntFromProps(fieldName: string, props: Dictionary): number | never {
+	return extractPositiveInt(fieldName, props[fieldName]);
+}
+
+function extractPositiveInt(fieldName: string, valueString: string): number | never {
 	if (!valueString) {
-		throw new Error("missing duration");
+		throw new Error("missing " + fieldName);
 	}
-	value = parseInt(valueString);
+
+	const value = parseInt(valueString);
 	if (value <= 0) {
 		throw new Error("duration must be > 0");
 	}
-	if ((value % interval) != 0) {
-		throw new Error("duration % interval != 0");
-	}
-	let duration = value;
+	return value;
+}
 
-	valueString = props["departure"];
-	if (!valueString) {
-		throw new Error("missing departure");
-	}
-	value = parseInt(valueString);
-	if (value <= 0) {
-		throw new Error("departure must be > 0");
-	}
+function enforceMultipleOfInterval(fieldName: string, value: number, interval: number): never | void {
 	if ((value % interval) != 0) {
-		throw new Error("departure % interval != 0");
+		throw new Error(fieldName + " % interval != 0");
 	}
-	let departure = value;
-
-	return { interval, duration, departure };
 }
