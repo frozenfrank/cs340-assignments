@@ -1,8 +1,23 @@
 
 // This program violates the principles of High-Quality Abstraction, Primitive Obsession, and Information Hiding.
-// 
+//
 // 1. Explain why/how this program violates the above principles.
 // 2. Explain how you would refactor the code to improve its design.
+
+/**
+ * # Answers
+ * 1. There are many issues here:
+ * 		* The `board` field of `Game` is publicly available, AND the tests rely on that fact.
+ * 		* The `board` is obsessively tied to a string array which is a limiting decision
+ * 		* The `Game` class is not using `Player` abstractions
+ * 		* The `Game` class is concretely implementing one game, when the `move`, `play`, and `winner` methods could be used as template methods for any game.
+ * 		* In the `winner()` method, the game is directly accessing chars of the `board` string which info has not been hidden, and which is primitively obsesssed.
+ * 2. Several refactors:
+ * 		* Create a separate `Board` class that privately contains it's internal data structure
+ * 		* Make the `board` field of `Game` a private field
+ * 		* Convert `Game` into an abstract class requiring template methods to be implemented
+ * 		* Add a `Game.FromString()` static method that encapsulates and handles the string construction of a board
+ */
 
 export class Game {
 
@@ -10,7 +25,7 @@ export class Game {
 
 	constructor(board: string[], position: number = -1, player: string = '') {
 		this.board = [...board];
-		
+
 		if (position >= 0 && player !== "") {
 			this.board[position] = player;
 		}
@@ -81,7 +96,7 @@ export class GameTest {
 		let game = new Game(this.stringToCharArray("XO-XX-OOX"));
 		this.assertEquals(5, game.move('X'));
 	}
-	
+
 	testWinConditions() {
 		let game = new Game(this.stringToCharArray("---XXX---"));
 		this.assertEquals('X', game.winner());
