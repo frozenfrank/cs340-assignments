@@ -2,6 +2,15 @@
 // 1. Explain why/how this program violates the Single Responsibility Principle
 // 2. Explain how you would refactor the program to improve its design.
 
+/**
+ * # ANSWERS
+ * 1. This class is mainly responsible for converting an CSV-like data structure into a string,
+ * 		however, it is here specifically tied to the concrete implementation of writing to `console.log()`.
+ *    This would require a nearly-total change to this file just to be able to write to a different place like a device or printer.
+ * 2. I would pass in a method via the constructor, or require a concrete class to implement a method `writeChars(chars: string)`.
+ *    This would allow usages a `ConsoleCsvWriter` class to define the default for a console, while also supporting a `PrinterCsvWriter` and many others.
+ */
+
 export class CsvWriter {
 
 	public write(lines: string[][] ) {
