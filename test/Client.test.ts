@@ -57,8 +57,8 @@ describe("m4 integrated test", () => {
     // TODO: Verify that the parameters passed to mockService.processList are not null. Do so in the thenCall function from the previous TODO.
     // Hint: Use ts-mockito anything() as the parameter to processList
 
-    when(mockService.processList(anything())).thenCall((...argv) =>
-      argv.every(a => expect(a).not.toBeNull()));
+    when(mockService.processList(anything()))
+      .thenCall((...argv) => argv.every(a => expect(a).not.toBeNull()));
 
     const input: string = "Have a nice day";
 
