@@ -1,28 +1,33 @@
+import { anything, instance, mock, spy, verify, when } from 'ts-mockito';
 import { Client } from "../src/Client";
 import { Service } from "../src/Service";
 
 describe("m4 integrated test", () => {
   let mockService: Service;
   let mockServiceInstance: Service;
-  let client: Client;
   let spyClientInstance: Client;
 
   /**
    * This function is run before each test. We can use it to set up our mock objects with Mockito.
    */
   beforeEach(() => {
-    // TODO: Mock the Service class here instead of calling new
-    mockService = new Service();
+    //  Mock the Service class here instead of calling new
+    mockService = mock(new Service());
 
-    // TODO: Create the mockServiceInstance as an instance of the mockService
+    //  Create the mockServiceInstance as an instance of the mockService
+    mockServiceInstance = instance(mockService);
 
-    client = new Client();
+    const client = new Client();
 
-    // TODO: Create the spy for the client.
+    //  Create the spy for the client.
+    const spyClient: Client = spy(client);
 
-    // TODO: Create the spyClientInstance as an instance of the client spy
+    // Create the spyClientInstance as an instance of the client spy
+    spyClientInstance = instance(spyClient);
 
-    // TODO: Use the ts-mokito when/thenReturn to tell the spyClient (not the client) to return the instance of the mock service when the factory method is called
+    // Use the ts-mokito when/thenReturn to tell the spyClient (not the client) to return the instance of the mock service when the factory method is called
+    when(spyClient.getService()).thenReturn(mockServiceInstance);
+
   });
 
   /**
@@ -33,10 +38,10 @@ describe("m4 integrated test", () => {
   it("testConvertValue", () => {
     const expected: string = "70";
 
-    // TODO: Use ts-mockito when/thenReturn to tell the mock service (not the instance of the mock service) to return 2 for input 35 when it's getDecimalDigitCount(int) method is called
+    // Use ts-mockito when/thenReturn to tell the mock service (not the instance of the mock service) to return 2 for input 35 when it's getDecimalDigitCount(int) method is called
+    when(mockService.getDecimalDigitCount(35)).thenReturn(2);
 
-    // TODO: Change this to use the spyClientInstance
-    const actual: string = client.convertValue(35);
+    const actual: string = spyClientInstance.convertValue(35);
 
     expect(actual).toBe(expected);
   });
@@ -52,12 +57,15 @@ describe("m4 integrated test", () => {
     // TODO: Verify that the parameters passed to mockService.processList are not null. Do so in the thenCall function from the previous TODO.
     // Hint: Use ts-mockito anything() as the parameter to processList
 
-    
+    when(mockService.processList(anything())).thenCall(argv =>
+      argv.each(a => expect(a).not.toBeNull()));
+
     const input: string = "Have a nice day";
 
-    // TODO: Change this to use the spyClientInstance
-    client.createFormattedStrings(input);
+    // Change this to use the spyClientInstance
+    spyClientInstance.createFormattedStrings(input);
 
-    // TODO: use ts-mockito verify to ensure that mockService.processList is called
+    // use ts-mockito verify to ensure that mockService.processList is called
+    verify(mockService.processList(anything())).called();
   });
 });
