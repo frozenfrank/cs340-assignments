@@ -12,7 +12,7 @@ describe("m4 integrated test", () => {
    */
   beforeEach(() => {
     //  Mock the Service class here instead of calling new
-    mockService = mock(new Service());
+    mockService = mock(Service);
 
     //  Create the mockServiceInstance as an instance of the mockService
     mockServiceInstance = instance(mockService);
@@ -57,8 +57,8 @@ describe("m4 integrated test", () => {
     // TODO: Verify that the parameters passed to mockService.processList are not null. Do so in the thenCall function from the previous TODO.
     // Hint: Use ts-mockito anything() as the parameter to processList
 
-    when(mockService.processList(anything())).thenCall(argv =>
-      argv.each(a => expect(a).not.toBeNull()));
+    when(mockService.processList(anything())).thenCall((...argv) =>
+      argv.every(a => expect(a).not.toBeNull()));
 
     const input: string = "Have a nice day";
 
