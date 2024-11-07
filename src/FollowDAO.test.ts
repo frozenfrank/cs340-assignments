@@ -58,11 +58,11 @@ async function updateFollow() {
     followee_handle: defaultFolloweeHandle,
     followee_name: defaultFolloweeName,
   };
-  followDao.updateFollow(updateFollow);
+  await followDao.updateFollow(updateFollow);
 }
 
 async function deleteFollow() {
-  followDao.deleteFollow({
+  await followDao.deleteFollow({
     followee_handle: defaultFolloweeHandle,
     follower_handle: defaultFollowerHandle
   });
