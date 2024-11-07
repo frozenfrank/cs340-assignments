@@ -38,7 +38,7 @@ async function getFollow() {
   const follow = await followDao.getSomeFollow({
     followee_handle: defaultFolloweeHandle,
     follower_handle: defaultFollowerHandle,
-  });
+  }, true);
   console.log("getFollow() => ", follow);
 }
 

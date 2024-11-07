@@ -39,10 +39,11 @@ export class FollowDAO {
   }
 
   /** Get a particular follow relationship, or `null` if it doesn't exist. */
-  async getSomeFollow(followHandles: FollowHandles): Promise<Follow|null> {
+  async getSomeFollow(followHandles: FollowHandles, consistentRead = false): Promise<Follow|null> {
     const command = new GetCommand({
       TableName: this.tableName,
       Key: this.generateFollowKey(followHandles),
+      ConsistentRead: consistentRead,
     });
 
     const response = await this.client.send(command);
