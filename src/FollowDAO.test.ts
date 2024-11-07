@@ -56,9 +56,9 @@ async function createDefaultFollow() {
 async function updateFollow() {
   const updateFollow: Follow = {
     follower_handle: defaultFollowerHandle,
-    follower_name: defaultFollowerName,
+    follower_name: "NEW: " + defaultFollowerName,
     followee_handle: defaultFolloweeHandle,
-    followee_name: defaultFolloweeName,
+    followee_name: "NEW: " + defaultFolloweeName,
   };
   await followDao.updateFollow(updateFollow);
 }

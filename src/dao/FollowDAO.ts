@@ -1,8 +1,10 @@
 import {
+  DeleteCommand,
   DynamoDBDocumentClient,
   GetCommand,
   PutCommand,
   PutCommandOutput,
+  UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { Follow } from "../entity/Follow";
@@ -40,10 +42,7 @@ export class FollowDAO {
   async getSomeFollow(followHandles: FollowHandles): Promise<Follow|null> {
     const command = new GetCommand({
       TableName: this.tableName,
-      Key: {
-        [this.followerHandleAttr]: followHandles.follower_handle,
-        [this.followeeHandleAttr]: followHandles.followee_handle,
-      }
+      Key: this.generateFollowKey(followHandles),
     });
 
     const response = await this.client.send(command);
@@ -56,12 +55,38 @@ export class FollowDAO {
 
   /** Updates the names of the follower and followee, if it exists, given their handles are provided. */
   async updateFollow(withUpdatedFollowNames: Follow): Promise<void> {
+    const command = new UpdateCommand({
+      TableName: this.tableName,
+      Key: this.generateFollowKey(withUpdatedFollowNames),
+      UpdateExpression: `set ${this.followeeNameAttr} = :fee, ${this.followerNameAttr} = :fer`,
+      ExpressionAttributeValues: {
+        ":fee": withUpdatedFollowNames.followee_name,
+        ":fer": withUpdatedFollowNames.follower_name,
+      },
+      ReturnValues: "NONE",
+    });
 
+    const response = await this.client.send(command);
+    console.log("updateFollow()", response);
   }
 
   /** Deletes the indicated "follow" relationship, if it exists. */
   async deleteFollow(followHandles: FollowHandles): Promise<void> {
+    const command = new DeleteCommand({
+      TableName: this.tableName,
+      Key: this.generateFollowKey(followHandles),
+      ReturnValues: "NONE",
+    });
 
+    const response = await this.client.send(command);
+    console.log("deleteFollow()", response);
+  }
+
+  private generateFollowKey(followHandles: FollowHandles): Record<string, any> {
+    return {
+      [this.followerHandleAttr]: followHandles.follower_handle,
+      [this.followeeHandleAttr]: followHandles.followee_handle,
+    };
   }
 
 }
