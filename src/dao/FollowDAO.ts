@@ -14,7 +14,7 @@ export class FollowDAO {
   private readonly followerNameAttr = "follower_name";
   private readonly followeeNameAttr = "followee_name";
 
-  private readonly client = DynamoDBDocumentClient.from(new DynamoDBClient());
+  private readonly client = DynamoDBDocumentClient.from(new DynamoDBClient({region: 'us-west-2'}));
 
   /**
    * Records a new
@@ -30,7 +30,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    console.log(response);
+    // console.log("putFollow()", response);
     return response;
   }
 
@@ -44,7 +44,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    console.log(response);
+    console.log("getSomeFollow()", response);
     if (response.Item) {
       return response.Item as Follow;
     }
