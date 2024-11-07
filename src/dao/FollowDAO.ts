@@ -1,3 +1,4 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DeleteCommand,
   DynamoDBDocumentClient,
@@ -6,7 +7,7 @@ import {
   PutCommandOutput,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { MetadataBearer } from "@aws-sdk/types";
 import { Follow } from "../entity/Follow";
 
 type FollowHandles = Pick<Follow, "followee_handle" | "follower_handle">;
@@ -34,7 +35,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    // console.log("putFollow()", response);
+    this.logResponseOnError(response);
     return response;
   }
 
@@ -47,7 +48,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    console.log("getSomeFollow()", response);
+    this.logResponseOnError(response);
     if (response.Item) {
       return response.Item as Follow;
     }
@@ -68,7 +69,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    console.log("updateFollow()", response);
+    this.logResponseOnError(response);
   }
 
   /** Deletes the indicated "follow" relationship, if it exists. */
@@ -80,7 +81,7 @@ export class FollowDAO {
     });
 
     const response = await this.client.send(command);
-    console.log("deleteFollow()", response);
+    this.logResponseOnError(response);
   }
 
   private generateFollowKey(followHandles: FollowHandles): Record<string, any> {
@@ -88,6 +89,12 @@ export class FollowDAO {
       [this.followerHandleAttr]: followHandles.follower_handle,
       [this.followeeHandleAttr]: followHandles.followee_handle,
     };
+  }
+
+  private logResponseOnError(response: MetadataBearer): void {
+    const statusCategory = Math.floor(response.$metadata.httpStatusCode / 100);
+    if (statusCategory === 2) return;
+    console.warn("Received non-200 status code:", response);
   }
 
 }
