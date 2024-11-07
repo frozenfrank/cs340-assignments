@@ -1,0 +1,7 @@
+{
+  "to": "finljam@byu.edu",
+  "from": "the30clues@gmail.com",
+  "subject": "Test Message CURL",
+  "textBody": "This is a test ... 🧑‍💻",
+  "htmlBody": "This is a <b>test</b>... 🧑‍💻"
+}
