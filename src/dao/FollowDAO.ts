@@ -7,6 +7,8 @@ import {
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { Follow } from "../entity/Follow";
 
+type FollowHandles = Pick<Follow, "followee_handle" | "follower_handle">;
+
 export class FollowDAO {
   private readonly tableName = "tweeter-follows";
   private readonly followerHandleAttr = "follower_handle";
@@ -34,12 +36,13 @@ export class FollowDAO {
     return response;
   }
 
-  /** Get any follow relationship for a particular follower handle, or `null` if none exist. */
-  async getSomeFollow(follower_handle: string): Promise<Follow|null> {
+  /** Get a particular follow relationship, or `null` if it doesn't exist. */
+  async getSomeFollow(followHandles: FollowHandles): Promise<Follow|null> {
     const command = new GetCommand({
       TableName: this.tableName,
       Key: {
-        [this.followerHandleAttr]: follower_handle
+        [this.followerHandleAttr]: followHandles.follower_handle,
+        [this.followeeHandleAttr]: followHandles.followee_handle,
       }
     });
 
@@ -57,7 +60,7 @@ export class FollowDAO {
   }
 
   /** Deletes the indicated "follow" relationship, if it exists. */
-  async deleteFollow(followHandles: Pick<Follow, "followee_handle"|"follower_handle">): Promise<void> {
+  async deleteFollow(followHandles: FollowHandles): Promise<void> {
 
   }
 

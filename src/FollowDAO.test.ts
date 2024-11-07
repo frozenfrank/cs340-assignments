@@ -35,8 +35,10 @@ async function putItemsWithSameFollowee() {
 }
 
 async function getFollow() {
-  const primaryKey = defaultFollowerHandle;
-  const follow = followDao.getSomeFollow(primaryKey);
+  const follow = await followDao.getSomeFollow({
+    followee_handle: defaultFolloweeHandle,
+    follower_handle: defaultFollowerHandle,
+  });
   console.log("getFollow() => ", follow);
 }
 
