@@ -5,10 +5,12 @@ import {
   GetCommand,
   PutCommand,
   PutCommandOutput,
+  QueryCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { MetadataBearer } from "@aws-sdk/types";
 import { Follow } from "../entity/Follow";
+import { DataPage } from "../entity/DataPage";
 
 type FollowHandles = Pick<Follow, "followee_handle" | "follower_handle">;
 
@@ -82,6 +84,56 @@ export class FollowDAO {
 
     const response = await this.client.send(command);
     this.logResponseOnError(response);
+  }
+
+  /** Gets a single page of followees of a particular user. */
+  getPageOfFollowees(followerHandle: string, pageSize: number, lastFolloweeHandle: string | undefined): Promise<DataPage<Follow>> {
+    const command = new QueryCommand({
+      TableName: this.tableName,
+      Limit: pageSize,
+      KeyConditionExpression: this.followerHandleAttr + " = :fer",
+      ExpressionAttributeValues: {
+        ":fer": followerHandle,
+      },
+      ExclusiveStartKey: lastFolloweeHandle === undefined ? undefined : this.generateFollowKey({
+        follower_handle: followerHandle,
+        followee_handle: lastFolloweeHandle,
+      }),
+    });
+
+    return this.readPagedQueryCommand(command);
+  }
+
+  /** Gets a single page of followers of a particular user. */
+  getPageOfFollowers(followeeHandle: string, pageSize: number, lastFollowerHandle: string | undefined): Promise<DataPage<Follow>> {
+    const command = new QueryCommand({
+      TableName: this.tableName,
+      Limit: pageSize,
+      KeyConditionExpression: this.followeeHandleAttr + " = :fee",
+      ExpressionAttributeValues: {
+        ":fee": followeeHandle,
+      },
+      ExclusiveStartKey: lastFollowerHandle === undefined ? undefined : this.generateFollowKey({
+        followee_handle: followeeHandle,
+        follower_handle: lastFollowerHandle,
+      }),
+    });
+
+    return this.readPagedQueryCommand(command);
+  }
+
+  private async readPagedQueryCommand(command: QueryCommand): Promise<DataPage<Follow>> {
+    const response = await this.client.send(command);
+    const hasMorePages = response.LastEvaluatedKey !== undefined;
+    const items = this.readItems(response.Items);
+
+    return new DataPage(items, hasMorePages);
+  }
+
+  private readItems(items: Record<string, any>[] | undefined): Follow[] {
+    const out: Follow[] = [];
+    items?.forEach(item => items.push(this.readFollow(item)));
+    return out;
   }
 
   private readFollow(item: Record<string, any>): Follow {
