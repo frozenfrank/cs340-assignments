@@ -50,7 +50,7 @@ export class FollowDAO {
     const response = await this.client.send(command);
     this.logResponseOnError(response);
     if (response.Item) {
-      return response.Item as Follow;
+      return this.readFollow(response.Item);
     }
     return null;
   }
@@ -82,6 +82,10 @@ export class FollowDAO {
 
     const response = await this.client.send(command);
     this.logResponseOnError(response);
+  }
+
+  private readFollow(item: Record<string, any>): Follow {
+    return item as Follow; // Easy for now because the `Follow` interface exactly matches the database.
   }
 
   private generateFollowKey(followHandles: FollowHandles): Record<string, any> {
