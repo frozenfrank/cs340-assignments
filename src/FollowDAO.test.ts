@@ -73,9 +73,18 @@ async function deleteDefaultFollow() {
   console.log("deleteDefaultFollow()");
 }
 
+function delay(ms: number) {
+  // https://stackoverflow.com/a/37764963/2844859
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 async function demonstrateWriteCapabilities() {
   console.log("\nWriting items with same follower:");
   await putItemsWithSameFollower();
+
+  const secDelay = 7;
+  console.error(`Delaying for ${secDelay} seconds`);
+  await delay(secDelay*1000);
 
   console.log("\nWriting items with same followee:");
   await putItemsWithSameFollowee();
