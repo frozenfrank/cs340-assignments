@@ -134,7 +134,7 @@ export class FollowDAO {
 
   private readItems(items: Record<string, any>[] | undefined): Follow[] {
     const out: Follow[] = [];
-    items?.forEach(item => items.push(this.readFollow(item)));
+    items?.forEach(item => out.push(this.readFollow(item)));
     return out;
   }
 
