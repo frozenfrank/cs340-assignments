@@ -1,0 +1,19 @@
+
+Demonstrating CRUD operations:
+getFollow() =>  null
+createDefaultFollow()
+getFollow() =>  {
+  followee_handle: '@ClintEastwood',
+  followee_name: 'Clint Eastwood',
+  follower_handle: '@FredFlintstone',
+  follower_name: 'Fred Flintstone'
+}
+updateDefaultFollow()
+getFollow() =>  {
+  followee_handle: '@ClintEastwood',
+  followee_name: 'NEW: Clint Eastwood',
+  follower_handle: '@FredFlintstone',
+  follower_name: 'NEW: Fred Flintstone'
+}
+deleteDefaultFollow()
+getFollow() =>  null

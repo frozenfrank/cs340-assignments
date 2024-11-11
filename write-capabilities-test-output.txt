@@ -1,0 +1,6 @@
+
+Writing items with same follower:
+Put 25 of same follower
+
+Writing items with same followee:
+Put 25 of same followee

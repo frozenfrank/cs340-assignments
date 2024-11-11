@@ -1,0 +1,64 @@
+
+Demonstrating paged query operations (FOLLOWEES)
+Received page of FOLLOWEES with 5 items
+  {"followee_handle":"@ClintEastwood-1","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-10","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-11","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-12","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-13","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+Received page of FOLLOWEES with 5 items
+  {"followee_handle":"@ClintEastwood-14","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-15","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-16","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-17","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-18","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+Received page of FOLLOWEES with 5 items
+  {"followee_handle":"@ClintEastwood-19","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-2","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-20","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-21","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-22","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+Received page of FOLLOWEES with 5 items
+  {"followee_handle":"@ClintEastwood-23","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-24","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-25","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-3","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-4","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+Received page of FOLLOWEES with 5 items
+  {"followee_handle":"@ClintEastwood-5","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-6","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-7","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-8","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+  {"followee_handle":"@ClintEastwood-9","followee_name":"Clint Eastwood 1","follower_handle":"@FredFlintstone","follower_name":"Fred Flintstone"}
+Received 25 total FOLLOWEES
+
+Demonstrating paged query operations (FOLLOWERS)
+Received page of FOLLOWERS with 5 items
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-1","follower_name":"Fred Flintstone 1"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-10","follower_name":"Fred Flintstone 10"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-11","follower_name":"Fred Flintstone 11"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-12","follower_name":"Fred Flintstone 12"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-13","follower_name":"Fred Flintstone 13"}
+Received page of FOLLOWERS with 5 items
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-14","follower_name":"Fred Flintstone 14"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-15","follower_name":"Fred Flintstone 15"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-16","follower_name":"Fred Flintstone 16"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-17","follower_name":"Fred Flintstone 17"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-18","follower_name":"Fred Flintstone 18"}
+Received page of FOLLOWERS with 5 items
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-19","follower_name":"Fred Flintstone 19"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-2","follower_name":"Fred Flintstone 2"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-20","follower_name":"Fred Flintstone 20"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-21","follower_name":"Fred Flintstone 21"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-22","follower_name":"Fred Flintstone 22"}
+Received page of FOLLOWERS with 5 items
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-23","follower_name":"Fred Flintstone 23"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-3","follower_name":"Fred Flintstone 3"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-4","follower_name":"Fred Flintstone 4"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-5","follower_name":"Fred Flintstone 5"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-6","follower_name":"Fred Flintstone 6"}
+Received page of FOLLOWERS with 3 items
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-7","follower_name":"Fred Flintstone 7"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-8","follower_name":"Fred Flintstone 8"}
+  {"followee_handle":"@ClintEastwood","followee_name":"Clint Eastwood","follower_handle":"@FredFlintstone-9","follower_name":"Fred Flintstone 9"}
+Received 23 total FOLLOWERS
