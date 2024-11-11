@@ -1,0 +1,4 @@
+# Runs the test script and saves output to a file
+OUT_FILE=${1:-"out.txt"}
+node -r ts-node/register src/FollowDAO.test.ts > $OUT_FILE
+echo "Output saved to file: $OUT_FILE"
