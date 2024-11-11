@@ -115,8 +115,12 @@ async function performPagedQueryDemonstration(itemName: string, getPage: (lastFo
 
 async function demonstratePagedQueryOperations() {
   const PAGE_SIZE = 2;
-  await performPagedQueryDemonstration("FOLLOWEES", lastItem => followDao.getPageOfFollowees(defaultFollowerHandle, PAGE_SIZE, lastItem?.followee_handle));
-  await performPagedQueryDemonstration("FOLLOWERS", lastItem => followDao.getPageOfFollowers(defaultFolloweeHandle, PAGE_SIZE, lastItem?.follower_handle));
+  await performPagedQueryDemonstration(
+    "FOLLOWEES",
+    lastItem => followDao.getPageOfFollowees(defaultFollowerHandle, PAGE_SIZE, lastItem?.followee_handle));
+  await performPagedQueryDemonstration(
+    "FOLLOWERS",
+    lastItem => followDao.getPageOfFollowers(defaultFolloweeHandle, PAGE_SIZE, lastItem?.follower_handle));
 }
 
 async function main() {
