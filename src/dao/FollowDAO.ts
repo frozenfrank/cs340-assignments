@@ -20,6 +20,7 @@ export class FollowDAO {
   private readonly followeeHandleAttr = "followee_handle";
   private readonly followerNameAttr = "follower_name";
   private readonly followeeNameAttr = "followee_name";
+  private readonly followeeIndexName = "follows-index";
 
   private readonly client = DynamoDBDocumentClient.from(new DynamoDBClient({region: 'us-west-2'}));
 
@@ -113,6 +114,7 @@ export class FollowDAO {
       ExpressionAttributeValues: {
         ":fee": followeeHandle,
       },
+      IndexName: this.followeeIndexName,
       ExclusiveStartKey: lastFollowerHandle === undefined ? undefined : this.generateFollowKey({
         followee_handle: followeeHandle,
         follower_handle: lastFollowerHandle,
