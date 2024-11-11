@@ -1,4 +1,5 @@
 import { FollowDAO } from "./dao/FollowDAO";
+import { DataPage } from "./entity/DataPage";
 import { Follow } from "./entity/Follow";
 
 const followDao = new FollowDAO();
@@ -91,9 +92,37 @@ async function demonstrateCrudOperations() {
   await getFollow(); // Status Update!
 }
 
+async function performPagedQueryDemonstration(itemName: string, getPage: (lastFollow?: Follow) => Promise<DataPage<Follow>>) {
+  console.log(`\nDemonstrating paged query operations (${itemName})`);
+
+  let page: DataPage<Follow> | undefined;
+  let lastItem: Follow | undefined;
+  let countReceived: number;
+  let totalReceived = 0;
+  do {
+    lastItem = page?.values[page.values.length-1];
+    page = await getPage(lastItem);
+
+    countReceived = page.values.length;
+    totalReceived += countReceived;
+
+    console.log(`Received page of ${itemName} with ${countReceived} items`);
+    page.values.forEach(follow => console.log(`  ${JSON.stringify(follow)}`));
+  } while (page.hasMorePages && countReceived);
+
+  console.log(`Received ${totalReceived} total ${itemName}`);
+}
+
+async function demonstratePagedQueryOperations() {
+  const PAGE_SIZE = 2;
+  await performPagedQueryDemonstration("FOLLOWEES", lastItem => followDao.getPageOfFollowees(defaultFollowerHandle, PAGE_SIZE, lastItem?.followee_handle));
+  await performPagedQueryDemonstration("FOLLOWERS", lastItem => followDao.getPageOfFollowers(defaultFolloweeHandle, PAGE_SIZE, lastItem?.follower_handle));
+}
+
 async function main() {
-  await demonstrateWriteCapabilities();
-  await demonstrateCrudOperations();
+  // await demonstrateWriteCapabilities();
+  // await demonstrateCrudOperations();
+  await demonstratePagedQueryOperations();
 }
 
 main();
