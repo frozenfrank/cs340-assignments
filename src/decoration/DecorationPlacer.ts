@@ -1,15 +1,18 @@
-import { HalloweenTableclothPatternProvider } from "../holiday/Halloween/HalloweenTableclothPatternProvider";
-import { HalloweenWallHangingProvider } from "../holiday/Halloween/HalloweenWallHangingProvider";
-import { HalloweenYardOrnamentProvider } from "../holiday/Halloween/HalloweenYardOrnamentProvider";
+import { HolidayProviderFactory } from "../model/HolidayProviderFactory";
+import { TableclothProvider } from "../model/TableclothProvider";
+import { WallHangingProvider } from "../model/WallHangingProvider";
+import { YardOrnamentProvider } from "../model/YardOrnamentProvider";
 
 export class DecorationPlacer {
-  // FIXME use dependency inversion to remove these hard-coded dependencies
-  private tableclothPattern: HalloweenTableclothPatternProvider =
-    new HalloweenTableclothPatternProvider();
-  private wallHanging: HalloweenWallHangingProvider =
-    new HalloweenWallHangingProvider();
-  private yardOrnament: HalloweenYardOrnamentProvider =
-    new HalloweenYardOrnamentProvider();
+  private tableclothPattern:  TableclothProvider;
+  private wallHanging:        WallHangingProvider;
+  private yardOrnament:       YardOrnamentProvider;
+
+  constructor(providers: HolidayProviderFactory) {
+    this.tableclothPattern = providers.getTableclothProvider();
+    this.wallHanging = providers.getWallHangingProvider();
+    this.yardOrnament = providers.getYardOrnamentProvider();
+  }
 
   placeDecorations(): string {
     return (
