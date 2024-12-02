@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node src/index.ts",
+    "start": "node dist/SqsClient.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,10 +11,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/aws-sdk": "^0.0.42",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@aws-sdk/client-sqs": "^3.699.0",
     "@types/node": "^22.10.1"
   }
 }
