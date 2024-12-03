@@ -1,9 +1,11 @@
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 
-let sqsClient = new SQSClient();
+let sqsClient = new SQSClient({
+  region: "us-west-2",
+});
 
 async function sendMessage(): Promise<void> {
-  const sqs_url = "*** PUT YOUR QUEUE URL HERE ***";
+  const sqs_url = "https://sqs.us-west-2.amazonaws.com/043309350193/CS_340_SQS_Exercise_Queue";
   const messageBody = "*** PUT YOUR MESSAGE BODY HERE ***";
 
   const params = {
