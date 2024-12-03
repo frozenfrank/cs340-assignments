@@ -1,11 +1,22 @@
-# cs340-assignments
+# 🦜 CS 340 Assignments
+
 Class assignments and exercises for CS 340 Software Engineering.
 
-This repo collects all of the non-project assignments and exercies
+This repo collects all of the non-project assignments and exercises
 created during CS 340, taken during Fall 2024 at Brigham Young University.
 
 Each assignment was created independently, and is represented here as a separate branch.
 The branches will not be merged together as they are mutually incompatible.
+
+## Creating TS Projects
+
+Leverage the [`create-ts-project.sh`](https://github.com/frozenfrank/byte-bin/blob/main/shell/create-ts-project.sh) script.
+
+Follow the [Installation Instructions](https://github.com/frozenfrank/byte-bin/tree/main?tab=readme-ov-file#installation)
+to have the script added to your `$PATH` variable.
+
+Additionally, on my local machine, I have a symlink to the script in my root directory
+which provides redundant, easy access on demand.
 
 ## Pushing Assignments
 
