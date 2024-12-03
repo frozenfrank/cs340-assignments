@@ -22,4 +22,7 @@ async function sendMessage(): Promise<void> {
   }
 }
 
-sendMessage();
+const MSG_COUNT = 10;
+for (let i = 0; i < MSG_COUNT; ++i) {
+  sendMessage();
+}
