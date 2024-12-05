@@ -7,6 +7,8 @@ import { JokeStringSource } from "./string/JokeStringSource";
 import { SequentialStringSource } from "./string/SequentialStringSource";
 import { StringSource } from "./string/StringSource";
 
+const NUM_SAMPLES = 10;
+
 interface DemoRun {
   name: string;
   source: StringSource;
@@ -31,31 +33,29 @@ const demos: DemoRun[] = [
   },
 ];
 
-async function demonstrate() {
+async function demonstrate(demos: DemoRun[]) {
   let source: StringSource;
-  let result: string;
   for (const demo of demos) {
-    console.log("\n\nBEGIN DEMO: " + demo.name);
     source = demo.source;
 
-    const NUM_SAMPLES = 10;
-
-    console.log(`\nGenerating ${NUM_SAMPLES} undecorated samples`)
-    for (let i = 0; i < NUM_SAMPLES; ++i) {
-      result = await source.next();
-      console.log("  " + result);
-    }
+    console.log("\n\nBEGIN DEMO: " + demo.name);
+    await generateSamples(source, NUM_SAMPLES, "undecorated");
 
     for (const Decorator of demo.decorators) {
       source = new Decorator(source);
     }
 
-    console.log(`\nGenerating ${NUM_SAMPLES} decorated samples`)
-    for (let i = 0; i < NUM_SAMPLES; ++i) {
-      result = await source.next();
-      console.log("  " + result);
-    }
+    await generateSamples(source, NUM_SAMPLES, "decorated");
   }
 }
 
-demonstrate();
+async function generateSamples(source: StringSource, numSamples: number, label: string): Promise<void> {
+  console.log(`\nGenerating ${numSamples} ${label} samples`);
+  let result: string;
+  for (let i = 0; i < numSamples; ++i) {
+    result = await source.next();
+    console.log("  " + result);
+  }
+}
+
+demonstrate(demos);
