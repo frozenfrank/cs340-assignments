@@ -24,6 +24,8 @@ export class ContactTableAdaptor implements TableData {
 
   private maxWidths: Record<keyof Contact, number>;
 
+  private defaultWidthPadding = 2;
+
   constructor(private contacts: ContactManager) {
     this.refreshMaxWidths();
   }
@@ -69,7 +71,7 @@ export class ContactTableAdaptor implements TableData {
   }
   getColumnWidth(col: number): number {
     const colDef = this.cols[col];
-    return colDef.width ?? this.maxWidths[colDef.key];
+    return colDef.width ?? (this.maxWidths[colDef.key] + this.defaultWidthPadding);
   }
   getColumnJustification(col: number): Justification {
     return this.cols[col].just ?? Justification.Center;
