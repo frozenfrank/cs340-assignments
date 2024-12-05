@@ -24,7 +24,7 @@ export class ChaosDecorator extends StringDecorator {
 
   private SAFE_PROP = 0.3;
 
-  private DISRUPTION_PROB = 0.25; // Per character
+  private DISRUPTION_PROB = 0.1; // Per character
 
 
   async next(): Promise<string> {
