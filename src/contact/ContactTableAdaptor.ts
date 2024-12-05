@@ -10,19 +10,44 @@ interface ColInfo {
   title: string;
   /** The justification type of the column. Default: Center */
   just?: Justification;
-  /** The width of the column. Future versions may support dynamic width based on content */
-  width: number;
+  /** The width of the column. Omit to use the maximum width of data in the column. */
+  width?: number;
 }
 
 export class ContactTableAdaptor implements TableData {
   private cols: ColInfo[] = [
-    { key: "firstName", title: "First Name", width: 5 },
-    { key: "lastName", title: "Last", width: 5 },
-    { key: "phone", title: "Phone", width: 5 },
-    { key: "email", title: "Email", width: 5 },
+    { key: "firstName", title: "First Name" },
+    { key: "lastName", title: "Last" },
+    { key: "phone", title: "Phone", width: 15 },
+    { key: "email", title: "Email" },
   ];
 
-  constructor(private contacts: ContactManager) { }
+  private maxWidths: Record<keyof Contact, number>;
+
+  constructor(private contacts: ContactManager) {
+    this.refreshMaxWidths();
+  }
+
+  private refreshMaxWidths() {
+    const maxWidths: typeof this.maxWidths = {
+      firstName: 0,
+      lastName: 0,
+      phone: 0,
+      email: 0
+    };
+    const keys = this.cols.map(c => c.key);
+
+    let contact: Contact;
+    const numContacts = this.contacts.getContactCount();
+    for (let i = 0; i < numContacts; ++i) {
+      contact = this.contacts.getContact(i);
+      for (const key of keys) {
+        maxWidths[key] = Math.max(maxWidths[key], contact[key].length);
+      }
+    }
+
+    this.maxWidths = maxWidths;
+  }
 
   getColumnCount(): number {
     return this.cols.length;
@@ -43,7 +68,8 @@ export class ContactTableAdaptor implements TableData {
     return this.cols[col].title;
   }
   getColumnWidth(col: number): number {
-    return this.cols[col].width;
+    const colDef = this.cols[col];
+    return colDef.width ?? this.maxWidths[colDef.key];
   }
   getColumnJustification(col: number): Justification {
     return this.cols[col].just ?? Justification.Center;
