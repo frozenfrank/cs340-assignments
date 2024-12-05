@@ -11,11 +11,11 @@ export class SequentialStringSource implements StringSource {
     this.maxCode = max.charCodeAt(0);
   }
 
-  next(): string {
+  next(): Promise<string> {
     const val = String.fromCharCode(this.nextCode);
     ++this.nextCode;
     if (this.nextCode > this.maxCode) this.nextCode = this.minCode;
-    return val;
+    return Promise.resolve(val);
   }
 
 }

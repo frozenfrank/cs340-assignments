@@ -1,3 +1,3 @@
 export interface StringSource {
-  next(): string;
+  next(): Promise<string>;
 }
