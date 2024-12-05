@@ -16,9 +16,7 @@ export class SmileyDecorator extends StringDecorator {
     return smiley + result + smiley;
   }
 
-  private getSmiley(): string {
-    // https://stackoverflow.com/a/5915122/2844859
-    return this.smileys[this.smileys.length * Math.random() | 0];
+  private getSmiley() {
+    return this.getRandItem(this.smileys);
   }
-
 }
