@@ -1,9 +1,9 @@
 import { StringSource } from "../string/StringSource";
 
-export abstract class StringDecorator implements StringSource {
+export class StringDecorator implements StringSource {
   constructor(protected source: StringSource) { }
 
-  abstract next(): Promise<string>;
+  next(): Promise<string> { return this.source.next(); }
 
   protected getRandItem<T>(items: T[]): T {
     // https://stackoverflow.com/a/5915122/2844859
