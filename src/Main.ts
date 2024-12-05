@@ -1,4 +1,5 @@
 import { ContactManager } from "./contact/ContactManager";
+import { ContactTableAdaptor } from "./contact/ContactTableAdaptor";
 import { Contact } from "./entity/Contact";
 import { Table } from "./table/Table";
 import { TableData } from "./table/TableData";
@@ -13,7 +14,7 @@ function Main() {
   contactManager.addContact(new Contact("Ghost", "Mandelbrot", "444.555.6666", "ghost@mandelbrot.viz"));
   contactManager.addContact(new Contact("French Dog", "Mandelbrot", "555.666.7777", "frenchdog@mandelbrot.viz"));
 
-  const contactsTable: TableData = null; // TODO: Instantiate the adapter that implements the TableData interface and adapts/wraps the ContactManager
+  const contactsTable: TableData = new ContactTableAdaptor(contactManager);
   const table = new Table(contactsTable, (value: any) => process.stdout.write(value));
 
   table.display();
