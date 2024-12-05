@@ -16,8 +16,8 @@ interface ColInfo {
 
 export class ContactTableAdaptor implements TableData {
   private cols: ColInfo[] = [
-    { key: "firstName", title: "First Name" },
-    { key: "lastName", title: "Last" },
+    { key: "firstName", title: "First Name", just: Justification.Right },
+    { key: "lastName", title: "Last", just: Justification.Left },
     { key: "phone", title: "Phone", width: 15 },
     { key: "email", title: "Email" },
   ];
