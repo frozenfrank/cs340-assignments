@@ -7,7 +7,6 @@ export class SmileyDecorator extends StringDecorator {
     "😁", "😁",
     "😄", "😄",
     "😅",
-    "☺️",
   ];
 
   async next(): Promise<string> {

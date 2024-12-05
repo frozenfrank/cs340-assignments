@@ -22,6 +22,11 @@ const demos: DemoRun[] = [
     decorators: [ChaosDecorator, SmileyDecorator],
   },
   {
+    name: "Sequential <-- Smiley, Smiley, Smiley",
+    source: new SequentialStringSource(10, '0', '!', '/'),
+    decorators: [SmileyDecorator, SmileyDecorator, SmileyDecorator],
+  },
+  {
     name: "Joke <-- Smiley + Capitalizer",
     source: new JokeStringSource(),
     decorators: [SmileyDecorator, CapitalizerDecorator],

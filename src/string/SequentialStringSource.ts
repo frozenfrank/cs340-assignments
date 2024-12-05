@@ -6,7 +6,7 @@ export class SequentialStringSource implements StringSource {
   private maxCode: number;
 
   constructor(private len = 3, start = 'a', min = 'A', max = '~') {
-    this.nextCode = start.charCodeAt(0) - 1;
+    this.nextCode = start.charCodeAt(0);
     this.minCode = min.charCodeAt(0);
     this.maxCode = max.charCodeAt(0);
   }

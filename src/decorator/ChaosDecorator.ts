@@ -6,6 +6,8 @@ export class ChaosDecorator extends StringDecorator {
     "👾👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾", "👾",
     "😈😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈", "😈",
     "🦍🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍", "🦍",
+    "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_",
+    "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
     "🐗🐗", "🐗", "🐗", "🐗", "🐗", "🐗", "🐗", "🐗", "🐗",
     "🦨🦨", "🦨", "🦨", "🦨", "🦨", "🦨", "🦨", "🦨", "🦨",
     "💩💩", "💩", "💩", "💩", "💩", "💩", "💩",
@@ -22,7 +24,7 @@ export class ChaosDecorator extends StringDecorator {
   private CHAOS_MAG_RANGE = 5;
   private CHAOS_MIN_MAG = 3;
 
-  private SAFE_PROP = 0.3;
+  private SAFE_PROB = 0.3;
 
   private DISRUPTION_PROB = 0.1; // Per character
 
@@ -35,7 +37,7 @@ export class ChaosDecorator extends StringDecorator {
       return this.getTotalChaos();
     }
 
-    if (Math.random() < this.SAFE_PROP) {
+    if (Math.random() < this.SAFE_PROB) {
       return original;
     }
 
