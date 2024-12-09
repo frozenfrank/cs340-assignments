@@ -14,7 +14,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction RL
+direction TB
 
 class isValidComparator {
   <<interface>>
@@ -26,9 +26,9 @@ TextBox : - void draw()
 TextBox : + onUserInput(newInput)
 TextBox --> isValidComparator
 
-RequiredValidator ..|> isValidComparator
-NumericValidator ..|> isValidComparator
-PhoneNumberValidator ..|> isValidComparator
+isValidComparator <|.. RequiredValidator
+isValidComparator <|.. NumericValidator
+isValidComparator <|.. PhoneNumberValidator
 ```
 
 ## Question 2
