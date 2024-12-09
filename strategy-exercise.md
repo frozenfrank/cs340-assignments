@@ -71,8 +71,63 @@ ConfigFileImpl ..|> GetLoginCredentialsStrategy
 note for ConsoleCredentialsImpl "Noops for init() and deinit(). Start repl on get*() methods"
 note for GraphicalCredentialsImpl "Open dialog box on init() and await valid inputs. Close dialog on deinit()"
 note for ConfigFileImpl "Load file on init() and close file on deinit()"
-
 ```
 
+## Question 3
+
+> E-commerce applications need to process online customer orders.
+> The basic process for processing an order is the same for all applications, and includes steps like calculating sales tax, taking payment, and shipping the order.
+> **However, each of these steps will be somewhat different for each application:**
+>   1. The algorithm for calculating sales tax will depend on the laws of the state and/or country in which the software is deployed
+>   1. There are many different ways that a customer can pay: credit card, debit card, PayPal, etc.
+>   1. There are many different shipping options: FedEx, US Postal Service, DHL, etc.
 
 
+```mermaid
+---
+title: Strategy Exercise — E-commerce Payment
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class SalesTaxStrategy {
+  <<interface>>
+  + number calculate(orderTotal)
+}
+
+class PaymentMethodStrategy {
+  <<interface>>
+  + void collectDetails(Order)
+  + void pay(orderTotal)
+}
+
+class ShippingMethodStrategy {
+  <<interface>>
+  + void collectDetails(Order)
+  + void ship(orderTotal)
+}
+
+PaymentProcessor : + PaymentProcessor constructor(SalesTaxStrategy, PaymentMethodStrategy, ShippingMethodStrategy)
+PaymentProcessor : + prepareOrder(Order)
+PaymentProcessor : + processOrder(Order)
+PaymentProcessor --> SalesTaxStrategy
+PaymentProcessor --> PaymentMethodStrategy
+PaymentProcessor --> ShippingMethodStrategy
+note for PaymentProcessor "prepareOrder() {<br>// Calls collectDetails() on payment and shipping strategies <br>}"
+note for PaymentProcessor "processorder() {<br>...<br> payment.pay()<br> shipping.ship()<br>... <br>}"
+
+SalesTaxStrategy <|.. NoSalesTaxStrategy
+SalesTaxStrategy <|.. UtahSalesTaxStrategy
+SalesTaxStrategy <|.. CaliforniaSalesTaxStrategy
+
+ShippingMethodStrategy <|.. AmazonShippingStrategy
+ShippingMethodStrategy <|.. SantaShippingStrategy
+
+PaymentMethodStrategy <|.. CheckPaymentStrategy
+PaymentMethodStrategy <|.. CreditCardPaymentStrategy
+PaymentMethodStrategy <|.. PayLaterStrategy
+
+```
