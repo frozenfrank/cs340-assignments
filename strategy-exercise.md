@@ -1,5 +1,10 @@
 # Strategy Exercise Designs
 
+> [!NOTE]
+> Unfortunately, my diagramming tool is rendering this incorrectly. (I would file a bug report if I had more time.)\
+> Specifically, the notes are showing in purple instead of yellow, and the notes do not have the UML folded corner.\
+> Please appreciate that I completed the exercise and forgive the UML technicalities.
+
 ## Question 1
 
 > A graphical user interface (GUI) library provides a TextBox class that lets the user enter a text value.
@@ -147,7 +152,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction RL
+direction TB
 
 class AiStrategy {
   <<interface>>
@@ -166,7 +171,7 @@ AiStrategy <|.. ComboManStrategy
 
 AiStrategy *-- ComboManStrategy
 
-note for StrongManStrategy "Deal heavy damage, but duck slow"
-note for FastManStrategy "Doge with high probability, but deal low damage"
-note for ComboManStrategy "Combine abilities from other strategy patterns"
+note for StrongManStrategy "Deal heavy damage,<br> but duck slow"
+note for FastManStrategy "Doge with high probability,<br> but deal low damage"
+note for ComboManStrategy "Combine abilities from other<br> strategy patterns"
 ```
