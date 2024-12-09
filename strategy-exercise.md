@@ -129,5 +129,44 @@ ShippingMethodStrategy <|.. SantaShippingStrategy
 PaymentMethodStrategy <|.. CheckPaymentStrategy
 PaymentMethodStrategy <|.. CreditCardPaymentStrategy
 PaymentMethodStrategy <|.. PayLaterStrategy
+```
 
+## Question 4
+
+> Many video games implement “AI” (artificial intelligence) players that make it possible for human players to play against the computer.
+> **An AI player might use different strategies in deciding what moves it wants to make.**
+> An AI player might even use multiple strategies in combination.
+> Over time, we will probably think of new strategies that AI players can use to select their moves.
+
+
+```mermaid
+---
+title: Strategy Exercise — AI
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction RL
+
+class AiStrategy {
+  <<interface>>
+  + void kick()
+  + void punch()
+  + void duck()
+}
+
+AiPlayer : + AiPlayer constructor(AiStrategy)
+AiPlayer : + onUserInput(newInput)
+AiPlayer --> AiStrategy
+
+AiStrategy <|.. StrongManStrategy
+AiStrategy <|.. FastManStrategy
+AiStrategy <|.. ComboManStrategy
+
+AiStrategy *-- ComboManStrategy
+
+note for StrongManStrategy "Deal heavy damage, but duck slow"
+note for FastManStrategy "Doge with high probability, but deal low damage"
+note for ComboManStrategy "Combine abilities from other strategy patterns"
 ```
