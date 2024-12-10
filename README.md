@@ -152,7 +152,7 @@ config:
     hideEmptyMembersBox: true
 ---
 classDiagram
-direction TB
+direction RL
 
 class AiStrategy {
   <<interface>>
@@ -165,13 +165,13 @@ AiPlayer : + AiPlayer constructor(AiStrategy)
 AiPlayer : + onUserInput(newInput)
 AiPlayer --> AiStrategy
 
-AiStrategy <|.. StrongManStrategy
-AiStrategy <|.. FastManStrategy
-AiStrategy <|.. ComboManStrategy
+StrongManStrategy ..|> AiStrategy
+FastManStrategy ..|> AiStrategy
+ComboManStrategy ..|> AiStrategy
 
-AiStrategy *-- ComboManStrategy
+ComboManStrategy ..* AiStrategy
 
 note for StrongManStrategy "Deal heavy damage,<br> but duck slow"
-note for FastManStrategy "Doge with high probability,<br> but deal low damage"
+note for FastManStrategy "Dodge with high probability,<br> but deal low damage"
 note for ComboManStrategy "Combine abilities from other<br> strategy patterns"
 ```
