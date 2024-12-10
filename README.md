@@ -68,4 +68,8 @@ push-assignment hello-world-exercise
 # Usage: push-starter-code hello-world
 # Result: folder & branch named "hello-world-exercise"
 push-starter-code hello-world
+
+# After accidentally downloading many branches, this command will remove all
+# except the remote tracking branch connected to the currently checked out branch.
+prevmine
 ```

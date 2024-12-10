@@ -18,3 +18,7 @@ function push-starter-code() {
   mv "$1-starter-code" "$1-exercise"
   push-assignment "$1-exercise"
 }
+
+# Delete all remote tracking branches, except the one connected to the currently checked out branch.
+# Useful when a 'git fetch' command accidentally fetches more branches than were intended.
+alias prevmine='git branch -r | egrep -v "$(git rev-parse --abbrev-ref HEAD)" | xargs git branch -Dr'
