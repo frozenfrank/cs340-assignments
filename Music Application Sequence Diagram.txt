@@ -1,0 +1,19 @@
+title Music Application Sequence Diagram
+
+participant "Favorites Player" as Player
+participant "Music Database" as Database
+
+autoactivation on
+
+
+entryspacing 1.2
+[->Player: playFavorites()
+Player->Player:playSongs(favorites)
+loop #green for song in songs
+Player->Database:getSong(title)
+Database-->Player:Song
+Player->Player:playSong(Song)
+space 4
+deactivateafter Player
+end
+deactivateafter Player
