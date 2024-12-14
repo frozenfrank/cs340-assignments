@@ -26,6 +26,20 @@ created during CS 340, taken during Fall 2024 at Brigham Young University.
 * [s3-exercise](https://github.com/frozenfrank/cs340-assignments/tree/s3-exercise)
 * [template-exercise](https://github.com/frozenfrank/cs340-assignments/tree/template-exercise)
 
+## Usage
+
+Most of the projects were created with my custom generator script.
+* Several exercises require installing dependencies:
+    ```shell
+    npm install
+    ```
+* Most exercises an easy entry point:
+    ```shell
+    npm start
+    ```
+* These exercises also have a VS code `launch.json` script to enable easy debugging. Use the built-in IDE tools to launch the code.
+* A few exercises are documentation only and have no executables, or are not intended to be executed.
+
 ## Organization
 
 Each assignment was created independently, and is represented here as a separate branch.
@@ -49,7 +63,7 @@ with `git add -f FILE`.
 // .git/info/exclude
 # In my root directory, I only want specific files added.
 # The rest will be pushed on separate branches from their own folders.
-# Ignore all files, only the ones I manually add
+# Ignore all files, upload only the ones I manually add.
 *
 ```
 
