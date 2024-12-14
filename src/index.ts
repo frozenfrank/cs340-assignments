@@ -13,18 +13,22 @@ async function s3upload() {
     process.exit();
   }
 
+
   try {
+    const filename = process.argv[2];
+    console.log(filename);
+
     const client = new S3Client();
-    const fileContent = fs.readFileSync(process.argv[2]);
+    const fileContent = fs.readFileSync(filename);
 
     const params = {
       "Body": fileContent,
-      "Bucket": //TODO: Specify your bucket name,
-      "Key": //TODO: Specify name or file path you want to appear in S3,
+      "Bucket": "my-cs340-bucket-cli",
+      "Key": filename,
     }
 
-    const command = // TODO: Create the PutObjectCommand
-    const response = // TODO: Send the command and await the result
+    const command = new PutObjectCommand(params);
+    const response = await client.send(command);
 
     console.log("File upload successful with ", response.$metadata.httpStatusCode);
   } catch (error) {
