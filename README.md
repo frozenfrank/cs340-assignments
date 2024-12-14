@@ -5,6 +5,27 @@ Class assignments and exercises for CS 340 Software Engineering.
 This repo collects all of the non-project assignments and exercises
 created during CS 340, taken during Fall 2024 at Brigham Young University.
 
+## Table of Contents
+
+* [adapter-exercise](https://github.com/frozenfrank/cs340-assignments/tree/adapter-exercise)
+* [api-gateway-exercise](https://github.com/frozenfrank/cs340-assignments/tree/api-gateway-exercise)
+* [command-exercise](https://github.com/frozenfrank/cs340-assignments/tree/command-exercise)
+* [decorator-exercise](https://github.com/frozenfrank/cs340-assignments/tree/decorator-exercise)
+* [design-principles-exercise](https://github.com/frozenfrank/cs340-assignments/tree/design-principles-exercise)
+* [dynamo-db-exercise](https://github.com/frozenfrank/cs340-assignments/tree/dynamo-db-exercise)
+* [factory-exercise](https://github.com/frozenfrank/cs340-assignments/tree/factory-exercise)
+* [generics-exercise](https://github.com/frozenfrank/cs340-assignments/tree/generics-exercise)
+* [image-editor](https://github.com/frozenfrank/cs340-assignments/tree/image-editor)
+* [lambda-exercise](https://github.com/frozenfrank/cs340-assignments/tree/lambda-exercise)
+* [mock-exercise](https://github.com/frozenfrank/cs340-assignments/tree/mock-exercise)
+* [observer-exercise](https://github.com/frozenfrank/cs340-assignments/tree/observer-exercise)
+* [proxy-exercise](https://github.com/frozenfrank/cs340-assignments/tree/proxy-exercise)
+* [sequence-diagram-exercise](https://github.com/frozenfrank/cs340-assignments/tree/sequence-diagram-exercise)
+* [sqs-exercise](https://github.com/frozenfrank/cs340-assignments/tree/sqs-exercise)
+* [strategy-exercise](https://github.com/frozenfrank/cs340-assignments/tree/strategy-exercise)
+* [s3-exercise](https://github.com/frozenfrank/cs340-assignments/tree/s3-exercise)
+* [template-exercise](https://github.com/frozenfrank/cs340-assignments/tree/template-exercise)
+
 ## Organization
 
 Each assignment was created independently, and is represented here as a separate branch.
