@@ -21,19 +21,19 @@ config:
 classDiagram
 direction TB
 
-class isValidComparator {
+class IsValidComparator {
   <<interface>>
   + boolean isValid()
 }
 
-TextBox : + TextBox constructor(isValidComparator)
+TextBox : - IsValidComparator comparator
 TextBox : - void draw()
 TextBox : + onUserInput(newInput)
-TextBox --> isValidComparator
+TextBox --> IsValidComparator
 
-isValidComparator <|.. RequiredValidator
-isValidComparator <|.. NumericValidator
-isValidComparator <|.. PhoneNumberValidator
+IsValidComparator <|.. RequiredValidator
+IsValidComparator <|.. NumericValidator
+IsValidComparator <|.. PhoneNumberValidator
 ```
 
 ## Question 2
@@ -64,7 +64,7 @@ class GetLoginCredentialsStrategy {
   + Promise<void> deinit()
 }
 
-EmailClient : + EmailClient constructor(GetLoginCredentialsStrategy)
+EmailClient : - GetLoginCredentialsStrategy loginStrategy
 EmailClient : + sendEmail(EmailDetails)
 EmailClient --> GetLoginCredentialsStrategy
 note for EmailClient "sendEmail() {<br>...<br> if(needsCredentials) {<br> // call all methods on credentials strategy<br>}<br>...<br>}"
@@ -115,25 +115,27 @@ class ShippingMethodStrategy {
   + void ship(orderTotal)
 }
 
-PaymentProcessor : + PaymentProcessor constructor(SalesTaxStrategy, PaymentMethodStrategy, ShippingMethodStrategy)
+PaymentProcessor : - SalesTaxStrategy tax
+PaymentProcessor : - PaymentMethodStrategy payment
+PaymentProcessor : - ShippingMethodStrategy shipping
 PaymentProcessor : + prepareOrder(Order)
 PaymentProcessor : + processOrder(Order)
 PaymentProcessor --> SalesTaxStrategy
 PaymentProcessor --> PaymentMethodStrategy
 PaymentProcessor --> ShippingMethodStrategy
-note for PaymentProcessor "prepareOrder() {<br>// Calls collectDetails() on payment and shipping strategies <br>}"
-note for PaymentProcessor "processorder() {<br>...<br> payment.pay()<br> shipping.ship()<br>... <br>}"
+note for PaymentProcessor "prepareOrder() {<br>...<br>payment.collectDetails()<br>shipping.collectDetails()<br>... <br>}"
+note for PaymentProcessor "processorder() {<br>...<br>tax.calculate()<br> payment.pay()<br> shipping.ship()<br>... <br>}"
 
-SalesTaxStrategy <|.. NoSalesTaxStrategy
-SalesTaxStrategy <|.. UtahSalesTaxStrategy
-SalesTaxStrategy <|.. CaliforniaSalesTaxStrategy
+SalesTaxStrategy <|.. NoSalesTax
+SalesTaxStrategy <|.. UtahSalesTax
+SalesTaxStrategy <|.. CaliforniaSalesTax
 
-ShippingMethodStrategy <|.. AmazonShippingStrategy
-ShippingMethodStrategy <|.. SantaShippingStrategy
+ShippingMethodStrategy <|.. AmazonShipping
+ShippingMethodStrategy <|.. SantaShipping
 
-PaymentMethodStrategy <|.. CheckPaymentStrategy
-PaymentMethodStrategy <|.. CreditCardPaymentStrategy
-PaymentMethodStrategy <|.. PayLaterStrategy
+PaymentMethodStrategy <|.. CheckPayment
+PaymentMethodStrategy <|.. CreditCardPayment
+PaymentMethodStrategy <|.. PayLater
 ```
 
 ## Question 4
@@ -161,9 +163,10 @@ class AiStrategy {
   + void duck()
 }
 
-AiPlayer : + AiPlayer constructor(AiStrategy)
+AiPlayer : - AiStrategy aiStrategy
 AiPlayer : + onUserInput(newInput)
 AiPlayer --> AiStrategy
+note for AiPlayer "onUserInput() {<br>// Perform the action selected by user<br>}"
 
 StrongManStrategy ..|> AiStrategy
 FastManStrategy ..|> AiStrategy
