@@ -7,6 +7,9 @@ created during CS 340, taken during Fall 2024 at Brigham Young University.
 
 ## Table of Contents
 
+* [🦜 Tweeter Project](https://github.com/frozenfrank/cs340-tweeter)
+    * [🧜‍♀️ Docs (`mermaid` compatible)](https://github.com/frozenfrank/cs340-tweeter/tree/main/docs)
+    * [📘 Docs (GitHub pages deployment)](https://frozenfrank.github.io/cs340-tweeter/)
 * [adapter-exercise](https://github.com/frozenfrank/cs340-assignments/tree/adapter-exercise)
 * [api-gateway-exercise](https://github.com/frozenfrank/cs340-assignments/tree/api-gateway-exercise)
 * [command-exercise](https://github.com/frozenfrank/cs340-assignments/tree/command-exercise)
